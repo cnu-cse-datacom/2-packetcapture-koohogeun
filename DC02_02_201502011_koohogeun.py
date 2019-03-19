@@ -68,7 +68,6 @@ def convert_ip_address(data):
 
 def parsing_tcp_header(data):
 	tcp_header = struct.unpack("!1H1H1I1I1B1B1H1H1H", data)
-	print(tcp_header)
 	src = tcp_header[0]
 	dec = tcp_header[1]
 	seq = tcp_header[2]
@@ -109,7 +108,6 @@ def parsing_tcp_header(data):
 
 def parsing_udp_header(data):
 	udp_header = struct.unpack("!1H1H1H1H", data)
-	
 	src = udp_header[0]
 	dst = udp_header[1]
 	leng = udp_header[2]
