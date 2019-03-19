@@ -121,12 +121,10 @@ def parsing_udp_header(data):
 	print("header checksum: ", h_c)
 
 recv_socket = socket.socket(socket.AF_PACKET,socket.SOCK_RAW, socket.ntohs(0x800))
-
-data = recv_socket.recvfrom(20000)
-
-parsing_ethernet_header(data[0][0:14])
-if parsing_IP_header(data[0][14:34]) == 6:
-	parsing_tcp_header(data[0][34:54])
-else:
-	parsing_udp_header(data[0][34:42])
-
+while True:
+	data = recv_socket.recvfrom(20000)
+	parsing_ethernet_header(data[0][0:14])
+	if parsing_IP_header(data[0][14:34]) == 6:
+		parsing_tcp_header(data[0][34:54])
+	else:
+		parsing_udp_header(data[0][34:42])
