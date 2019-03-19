@@ -120,6 +120,7 @@ def parsing_udp_header(data):
 
 recv_socket = socket.socket(socket.AF_PACKET,socket.SOCK_RAW, socket.ntohs(0x800))
 while True:
+	print("<<<<<<Packet Capture Start>>>>>>")
 	data = recv_socket.recvfrom(20000)
 	parsing_ethernet_header(data[0][0:14])
 	if parsing_IP_header(data[0][14:34]) == 6:
